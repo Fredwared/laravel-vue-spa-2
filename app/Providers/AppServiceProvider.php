@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Eusebiu\JavaScript\Facades\ScriptVariables;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,12 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        ScriptVariables::add(function () {
-            return [
-                'baseUrl' => url('/'),
-                'data' => auth()->user(),
-            ];
-        });
+        if ($this->app->runningUnitTests()) {
+            Schema::defaultStringLength(191);
+        }
     }
 
     /**

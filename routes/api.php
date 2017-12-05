@@ -14,19 +14,24 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::post('logout', 'Auth\LoginController@logout');
+    Route::post('logout', '\Modules\Auth\Http\Controllers\LoginController@logout');
 
-    Route::get('/user', function (Request $request) {
+    Route::get('user', function (Request $request) {
         return $request->user();
     });
 
-    Route::patch('settings/profile', 'SettingsController@updateProfile');
-    Route::patch('settings/password', 'SettingsController@updatePassword');
+    Route::get('acl', '\Modules\Acl\Http\Controllers\AclController@getACL');
+    Route::get('menu', '\Modules\Menu\Http\Controllers\MenuController@getMenu');
+    //Route::resource('organization', '\Modules\Organization\Http\Controllers\OrganizationController');
+    Route::post('organization/getData', '\Modules\Organization\Http\Controllers\OrganizationController@getData');
+
+    Route::patch('settings/profile', 'Settings\ProfileController@update');
+    Route::patch('settings/password', 'Settings\PasswordController@update');
 });
 
 Route::group(['middleware' => 'guest:api'], function () {
-    Route::post('login', 'Auth\LoginController@login');
-    Route::post('register', 'Auth\RegisterController@register');
-    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-    Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+    Route::post('login', '\Modules\Auth\Http\Controllers\LoginController@login');
+    Route::post('register', '\Modules\Auth\Http\Controllers\RegisterController@register');
+    Route::post('password/email', '\Modules\Auth\Http\Controllers\ForgotPasswordController@sendResetLinkEmail');
+    Route::post('password/reset', '\Modules\Auth\Http\Controllers\ResetPasswordController@reset');
 });

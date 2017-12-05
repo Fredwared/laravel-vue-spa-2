@@ -1,11 +1,11 @@
 const path = require('path')
+const webpack = require('webpack')
 const mix = require('laravel-mix')
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 mix
   .js('resources/assets/js/app.js', 'public/js')
   .sass('resources/assets/sass/app.scss', 'public/css')
-
   .sourceMaps()
   .disableNotifications()
 
@@ -18,13 +18,14 @@ if (mix.inProduction()) {
     'axios',
     'vuex',
     'jquery',
-    'tether',
+    'popper.js',
     'vue-i18n',
     'vue-meta',
     'js-cookie',
     'bootstrap',
     'vue-router',
     'sweetalert2',
+    'datatables',
     'vuex-router-sync'
   ])
 }
@@ -32,14 +33,18 @@ if (mix.inProduction()) {
 mix.webpackConfig({
   plugins: [
     // new BundleAnalyzerPlugin(),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Popper: ['popper.js', 'default']
+    })
   ],
   resolve: {
     alias: {
-      'src': path.join(__dirname, './resources/assets/js'),
-      '~utils': path.join(__dirname, './resources/assets/js/utils'),
-      '~plugins': path.join(__dirname, './resources/assets/js/plugins'),
-      '~services': path.join(__dirname, './resources/assets/js/services'),
-      '~components': path.join(__dirname, './resources/assets/js/components')
+      '~': path.join(__dirname, './resources/assets/js')
     }
   }
 })
+
+mix.browserSync('http://localhost:8000')
