@@ -1,10 +1,6 @@
-# Imatec System (Sistema Imatec) 
+# A Laravel-Vue SPA starter project template.
 
-> CRM responsible for production control, customer image view, requests (OS), billing and internal and external processes of the company. 
-
-(CRM responsavel pelo controle da produção, visualização de imagens dos clientes, solicitações (OS), faturamento e demais processos internos e externos da empresa.)
-
-## Packages (Pacotes Externos)
+## Packages 
 
 - [Skeleton](https://github.com/cretueusebiu/laravel-vue-spa.git)
 - [Laravel 5.5](https://laravel.com/docs/5.4)
@@ -26,7 +22,7 @@
 - Auditing with [owen-it/laravel-auditing](https://github.com/owen-it/laravel-auditing)
 - Repository with [l5-repository](https://github.com/andersao/l5-repository)
 
-## Installation (Instalação)
+## Installation 
 
 - `git clone https://github.com/cretueusebiu/laravel-vue-spa.git`
 - `cd imatec-app`
@@ -38,15 +34,15 @@
 - `php artisan migrate`
 - `npm install` / `yarn`
 
-## Usage (Como usar)
+## Usage 
 
-### Development (Desenvolvimento)
+### Development
 
-> Build and watch (constroi fontes e escuta mudanças na aplicação atualizando apenas o que foi alterado no navegador sem atualizar toda página)
+> Build and watch 
 ```bash
 npm run watch
 ```
-> Serve with hot reloading (constroi fontes e escuta mudanças na aplicação atualizando apenas o que foi alterado no navegador sem atualizar toda página)
+> Serve with hot reloading 
 ```bash
 npm run hot
 ```
@@ -56,8 +52,8 @@ npm run hot
 localhost:3000
 ```
 
-### Production (Produção)
-> Build and watch (constroi fontes de forma compactada visando performace)
+### Production 
+> Build and watch 
 ```bash
 npm run production
 ```
